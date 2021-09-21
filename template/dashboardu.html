@@ -1,0 +1,228 @@
+{% extends 'baseu.html' %}
+
+{% block dash %} 
+                <section class="page-title-section">
+                    <div class="container">
+                        <div class="page-header-wrap">
+                            <div class="page-header">
+                                   <h1>DASHBOARD</h1>
+                               </div>
+                        </div>
+                    </div>
+                </section>
+			        <!-- cta start -->
+			        <section class="cta-section">
+			        </section><!-- /.cta-section -->
+                    <!-- cta end -->
+
+                    
+                    <div class="analytics-sparkle-area">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="analytics-sparkle-line reso-mg-b-30">
+                                        <div class="analytics-content">
+                                            <h5>Agence</h5>
+                                            <h2><span class="counter">Actel Mohammedia Algérie Télécom</span></h2>
+                                            
+                                            <div class="progress m-b-0">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="analytics-sparkle-line reso-mg-b-30">
+                                        <div class="analytics-content">
+                                            <h5>ID</h5>
+                                            <h2><span class="counter">6TKK3457</span> </h2>
+                                           
+                                            <div class="progress m-b-0">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="analytics-sparkle-line reso-mg-b-30 table-mg-t-pro dk-res-t-pro-30">
+                                        <div class="analytics-content">
+                                            <h5>Adress</h5>
+                                            <h2><span class="counter">Route Nationale N05,Cinq maisons,Mohammadia</span></h2>
+                                            
+                                            <div class="progress m-b-0">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;">  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="analytics-sparkle-line table-mg-t-pro dk-res-t-pro-30">
+                                        <div class="analytics-content">
+                                            <h5>Nombre des agents</h5>
+                                            <h2><span class="counter">3</span></h2>
+                                            
+                                            <div class="progress m-b-0">
+                                                <div class="progress-bar progress-bar-inverse" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:100%;">  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="container" style="width: 100%; margin-top: 3%;">
+                    <div id="container" style="width: 44%; background-color: rgba(227, 233, 243, 0.432); display: inline-block; border: 2px solid rgb(160, 160, 160); margin-left: 3%;">
+                        <canvas id="client-chart" data-url="{% url 'client-chart' %}"></canvas>
+                      </div>
+                      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+                      <script>
+                        $(function () {
+                          var $clientChart = $("#client-chart");
+                          $.ajax({
+                            url: $clientChart.data("url"),
+                            success: function (data) {
+                     
+                              var ctx = $clientChart[0].getContext("2d");
+                     
+                              new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                  labels: data.labels,
+                                  datasets: [{
+                                    label: 'temps attente moyen',
+                                    backgroundColor: 'rgba(61, 179, 171, 0.32)',
+                                    borderColor: '#3db3ab',
+                                    borderWidth: '2',
+                                    hoverBackgroundColor: 'rgba(61, 179, 171, 0.57)',
+                                    hoverBorderColor: '#2C3E50',
+                                    hoverBorderWidth: '3',
+                                    data: data.data
+                                  }]          
+                                },
+                                options: {
+                                  responsive: true,
+                                  legend: {
+                                    position: 'top',
+                                  },
+                                  title: {
+                                    display: false,
+                                    
+                                  }
+                                }
+                              });
+                     
+                            }
+                          });
+                     
+                        });
+                      </script>
+
+
+
+
+                      <div id="container" style="width: 44%; background-color: rgba(227, 233, 243, 0.432); display: inline-block; border: 2px solid rgb(160, 160, 160); margin-left: 6%;">
+                        <canvas id="att-chart" data-url="{% url 'att-chart' %}"></canvas>
+                      </div>
+                      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+                      <script>
+                        $(function () {
+                          var $attChart = $("#att-chart");
+                          $.ajax({
+                            url: $attChart.data("url"),
+                            success: function (data) {
+                     
+                              var ctx = $attChart[0].getContext("2d");
+                     
+                              new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                  labels: data.labels,
+                                  datasets: [{
+                                    label: 'nombre des clients',
+                                    backgroundColor: 'rgba(54, 65, 94, 0.37)',
+                                    borderColor:'#36415e',
+                                    hoverBackgroundColor: 'rgba(54, 65, 94, 0.71)',
+                                    hoverBorderColor:'1a347a',
+                                    data: data.data
+                                  }]          
+                                },
+                                options: {
+                                  responsive: true,
+                                  legend: {
+                                    position: 'top',
+                                  },
+                                  title: {
+                                    display: false,
+                                    
+                                  }
+                                }
+                              });
+                     
+                            }
+                          });
+                     
+                        });
+                       </script>
+                    </div>
+
+  
+
+
+
+                      <div class="data-table-area mg-b-15">
+                      <div class="container-fluid">
+                      <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                    
+                                </div>
+                            </div>
+                                        <div class="sparkline13-graph">
+                                            <div class="datatable-dashv1-list custom-datatable-overright">
+                                                <div id="toolbar">
+                                                    <select class="form-control dt-tb">
+                                                        <option value="">Exportation</option>
+                                                        <option value="all">Exporter Tout</option>
+                                                        <option value="selected">Export Sélectionné</option>
+                                                    </select>
+                                                </div>
+                
+                                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-field="state" data-checkbox="true"></th>
+                                                            <th data-field="id">La Data</th>
+                                                            <th data-field="name">Nombre des agents</th>
+                                                            <th data-field="adr">Nombre des clients</th>
+                                                            <th data-field="phone">Temps d'attente client moyen</th>
+                                                            <th data-field="dash">max</th>
+                                                            <th data-field="">min</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for data in Datas %}
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>{{ data.jour}}</td>
+                                                            <td>{{ data.nbragent }}</td>
+                                                            <td>{{ data.nbrclient }}</td>
+                                                            <td><h6 style="color: #114e7a;">{{ data.attmoy}} Minutes</h6></td>
+                                                            <td><h6 style="color: #e70a0a;">{{ data.maxt}} Minutes</h6></td>
+                                                            <td><h6 style="color: #0b8c8d;">{{ data.mint}} Minutes</h6></td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div></div></div>
+                                        </div></div></div></div>
+                                   
+
+{% endblock dash %}

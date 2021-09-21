@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block content %}
+            <section class="page-title-section">
+                <div class="container">
+                    <div class="page-header-wrap">
+                        <div class="page-header">
+                               <h1>LISTE DES AGENCES</h1>
+                           </div>
+                    </div>
+                </div>
+            </section>
+
+    <!-- Static Table Start -->
+    <div class="data-table-area mg-b-15">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sparkline13-list">
+                        <div class="sparkline13-hd">
+                            <div class="main-sparkline13-hd">
+                                
+                            </div>
+                        </div>
+                        <a data-toggle="modal" data-target="#ajouter" href="#" class="btn btn-primary" >Ajouter Agence </a>
+                        <div class="sparkline13-graph">
+                            <div class="datatable-dashv1-list custom-datatable-overright">
+                                <div id="toolbar">
+                                    <select class="form-control dt-tb">
+                                        <option value="">Exportation</option>
+                                        <option value="all">Exporter Tout</option>
+                                        <option value="selected">Export Sélectionné</option>
+                                    </select>
+                                </div>
+
+                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                    data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="state" data-checkbox="true"></th>
+                                            <th data-field="id">ID</th>
+                                            <th data-field="name">Nom</th>
+                                            <th data-field="adr">Adress</th>
+                                            <th data-field="phone">nombre des agents</th>
+                                            <th data-field="dash">Dashboard</th>
+                                            <th data-field="">Modifier</th>
+                                            <th data-field="action">Supprimer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for agence in Agences %}
+                                        <tr>
+                                            <td></td>
+                                            <td>{{ agence.agenceid }}</td>
+                                            <td>{{ agence.nom }}</td>
+                                            <td>{{ agence.adress }}</td>
+                                            <td>{{ agence.nbragent}}</td>
+                                            <td> <a  href="dashboard" class="btn btn-primary">consulter</a></td>
+                                            <td> <a  href="/magence/{{agence.aid}}" class="btn btn-primary"style="background-color: #0b8c8d;">modifier</a></td>
+                                            <td> <a  href="/dagence/{{agence.aid}}" class="btn btn-primary"style="background-color: #e70a0a;">supprimer</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Static Table End -->
+
+        <!-- cta start -->
+        <section class="cta-section">
+            <div class="container text-center">
+                <!-- Modal -->
+                <div class="modal fade" id="ajouter" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content" style="background-color: #114e7a">
+                      <div class="modal-header" >
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="quoteModalLabel" style="color: #ffffff;">Ajouter Agence</h3>
+                      </div>
+                      <div class="modal-body" style="background-color: #ffffff;">
+                        <form action="" method="POST" id="contactForm"  style="margin-left:25%;">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="name">ID</label>
+                                        <input name="agenceid" type="text" class="form-control"  required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="name">NOM</label>
+                                        <input name="nom" type="text" class="form-control"  required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                  <div class="form-group">
+                                    <label for="name">ADRESSE</label>
+                                    <input name="adress" type="text" class="form-control" required="">
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                  <div class="form-group">
+                                    <label for="name">nombre d'agent dans la salle d'attente</label>
+                                    <input  name="nbragent" type="number" class="form-control">
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            </div>
+                            <div style=" width:65%; text-align:center; ">
+                                <button type="submit" class="btn btn-primary" style=" background-color: #0b8c8d; display:inline-block;">Ajouter</button>
+                                <button  class="btn btn-primary" class="close" data-dismiss="modal" aria-label="Close" style="background-color: #e70a0a; display:inline-block;">Annuler</button>
+                                </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div><!-- /.container -->
+        </section><!-- /.cta-section -->
+        <!-- cta end -->
+
+
+
+{% endblock content %}
+      

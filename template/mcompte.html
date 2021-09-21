@@ -1,0 +1,92 @@
+{% extends 'base.html' %} 
+{% block mcompte %}
+     
+			                <!-- cta start -->
+                                  <section class="cta-section" style="background-color: #c4ced8;">
+                                        <div class="container text-center">
+                                            <!-- Modal -->
+                                            <div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel" aria-hidden="true"></div>
+                                              <div class="modal-dialog modal-lg">
+                                                <div class="modal-content" style="background-color: #114e7a">
+                                                  <div class="modal-header" >
+                                                    <h3 class="modal-title" id="quoteModalLabel" style="color: #ffffff;">Modifier Compte</h3>
+                                                  </div>
+                                                  <div class="modal-body" style="background-color: #ffffff;">
+                                                    <form id="contactForm" action="" method="POST" style="margin-left:25%;">
+                                                        {% csrf_token %}
+                                                        <div class="modal-body" style="background-color: #ffffff;">
+                                                          <form id="contactForm" action="" method="POST" style="margin-left:25%;">
+                                                              <div class="row">
+                                                                  <div class="col-md-8">
+                                                                      <div class="form-group">
+                                                                          <label for="name">ID</label>
+                                                                          <input id="name" name="compteid" type="text" class="form-control"  required="" value="{{comptes.compteid}}">
+                                                                      </div>
+                                                                  </div></div>
+                                                              <div class="row">
+                                                                  <div class="col-md-8">
+                                                                      <div class="form-group">
+                                                                          <label for="name">Nom</label>
+                                                                          <input id="name" name="nom" type="text" class="form-control"  required="" value="{{comptes.nom}}">
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="row">
+                                                                  <div class="col-md-8">
+                                                                      <div class="form-group">
+                                                                          <label for="name">Email</label>
+                                                                          <input id="name" name="email" type="email" class="form-control"  required="" value="{{comptes.email}}">
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="row">
+                                                                  <div class="col-md-8">
+                                                                      <div class="form-group">
+                                                                          <label for="name">service</label>
+                                                                          <input id="name" name="service" type="text" class="form-control"  required="" value="{{comptes.service}}">
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="row">
+                                                                  <div class="col-md-8">
+                                                                    <div class="form-group">
+                                                                      <label for="phone">Agence</label>
+                                                                     <select name="agence" class="form-control">
+                                                                        <option value="Actel Mohammedia Algérie Télécom">Actel Mohammedia Algérie Télécom</option>
+                                                                         <option value="Actel el achour Algérie Télécom">Actel el achour Algérie Télécom</option>
+                                                                         <option value="Actel Ben Mhidi Algérie Télécom">Actel Ben Mhidi Algérie Télécom</option>
+                                                                       </select> 
+                                                                    
+                                                                    </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="row">
+                                                                  <div class="col-md-8">
+                                                                    <div class="form-group">
+                                                                      <label for="phone">Rôle</label>
+                                                                     <select name="role" class="form-control">
+                                                                        <option value="superadmin">Super-Admin</option>
+                                                                         <option value="admin">Admin</option>
+                                                                         <option value="user">User</option>
+                                                                       </select> 
+                                                                    
+                                                                    </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="row">
+                                                              </div>  
+                                                        <div style=" width:65%; text-align:center; ">
+                                                        <button type="submit" class="btn btn-primary" style=" background-color: #0b8c8d; display:inline-block;">Modifier</button>
+                                                        <button  class="btn btn-primary" style="background-color: #e70a0a; display:inline-block;"> <a href="{% url 'compte'%}">Annuler</a></button>
+                                                        </div>
+                                                    
+                                                    </form>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div><!-- /.container -->
+                                    </section><!-- /.cta-section -->
+                                    <!-- cta end -->
+{% endblock mcompte %}
+      
