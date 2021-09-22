@@ -1,4 +1,6 @@
 # CWT-Dashboard
+![plot](./static/img/icon.png)
+
 is The Web Application Part From CWT That uses CWT-DetectionSystem's Data and Visualise It Into a Dashboard
 
 # Technologies
